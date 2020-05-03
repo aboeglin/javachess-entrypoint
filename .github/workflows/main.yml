@@ -10,7 +10,7 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: arnaudboeglin/javachess-server
+          name: arnaudboeglin/javachess-entrypoint
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: "release-${{ github.run_number }},latest"
@@ -29,4 +29,4 @@ jobs:
           CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
         run: doctl kubernetes cluster kubeconfig save $CLUSTER_NAME
       - name: Update container image
-        run: kubectl set image deployment/entrypoint "entrypoint=entrypoint:release-${{ github.run_number }}" --record 
+        run: kubectl set image deployment/javachess-entrypoint "javachess-entrypoint=javachess-entrypoint:release-${{ github.run_number }}" --record 
