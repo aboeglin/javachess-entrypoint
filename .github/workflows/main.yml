@@ -29,4 +29,4 @@ jobs:
           CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
         run: doctl kubernetes cluster kubeconfig save $CLUSTER_NAME
       - name: Update container image
-        run: kubectl set image deployment/javachess-entrypoint "javachess-entrypoint=javachess-entrypoint:release-${{ github.run_number }}" --record 
+        run: kubectl -n apps set image deployment/javachess-entrypoint "javachess-entrypoint=arnaudboeglin/javachess-entrypoint:release-${{ github.run_number }}" --record 
